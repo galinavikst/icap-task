@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --page-bg-color: #f8f8f7;
+    --main-text-color: #1d1d1d;
+    --white: #fff;
+    --black: #000;
+    --accent-color-rose-400: #ff868e;
+    --accent-color-red-100: #fbe0dc;
+    --accent-color-amber-200: #ffd280;
+    --accent-color-indigo-300: #b3b7ff;
+    --acctnt-color-green-300: #97eab9;
+    --secondary-text-color: #8c8c8c;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg-color: 255, 255, 255;
+  }
+}
+
+body {
+  color: var(--main-text-color);
+  background: var(--page-bg-color);
+}
