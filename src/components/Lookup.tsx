@@ -1,7 +1,6 @@
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-import React from "react";
 
 export default function Lookup() {
   return (
@@ -17,10 +16,16 @@ export default function Lookup() {
         </div>
       </div>
       <div className="flex gap-2.5 grow-0">
-        <Link href="#" className="bg-white flex p-3.5 rounded-2xl">
+        <Link
+          href="/likes"
+          className="bg-white hover:bg-red-100 flex p-3.5 rounded-2xl"
+        >
           <Image src="/like.svg" width="30" height="30" alt="smile like" />
         </Link>
-        <Link href="#" className="bg-white flex p-3.5 rounded-2xl">
+        <Link
+          href="/favorites"
+          className="bg-white hover:bg-red-100 flex p-3.5 rounded-2xl"
+        >
           <Image
             src="/favorite.svg"
             width="30"
@@ -28,7 +33,10 @@ export default function Lookup() {
             alt="heart favorite"
           />
         </Link>
-        <Link href="#" className="bg-white flex p-3.5 rounded-2xl">
+        <Link
+          href="/dislike"
+          className="bg-white hover:bg-red-100 flex p-3.5 rounded-2xl"
+        >
           <Image
             src="/dislike.svg"
             width="30"

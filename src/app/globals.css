@@ -9,10 +9,13 @@
     --white: #fff;
     --black: #000;
     --accent-color-rose-400: #ff868e;
+    --rose-opacity: #ffdadd;
     --accent-color-red-100: #fbe0dc;
     --accent-color-amber-200: #ffd280;
+    --amber-opacity: #fff1d9;
     --accent-color-indigo-300: #b3b7ff;
     --acctnt-color-green-300: #97eab9;
+    --green-opacity: #e0f9ea;
     --secondary-text-color: #8c8c8c;
   }
 }
