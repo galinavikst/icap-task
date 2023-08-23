@@ -1,4 +1,4 @@
-"use client"; //client side (by default - server side)
+"use client"; //by default - server side
 
 import { ReactNode } from "react";
 import { store } from "./store";

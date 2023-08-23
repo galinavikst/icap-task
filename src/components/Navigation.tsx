@@ -2,19 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { setActivePage } from "@/redux/features/votingSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 
 export default function Navigation() {
-  // const dispatch = useDispatch<AppDispatch>();
-  //const isVotingActive = useAppSelector((state) => state.voting.isVotingActive);
-
-  const [activeLink, setActiveLink] = useState<string | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const activeLink = useAppSelector((state) => state.voting.isActivePage);
 
   const handleClick = (linkName: string) => {
-    setActiveLink(linkName);
+    dispatch(setActivePage(linkName));
   };
 
   return (

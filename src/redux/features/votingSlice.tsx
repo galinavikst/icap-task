@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type VotingState = {
-  isVotingActive: boolean;
+  isActivePage: null | string;
 };
 
 // type InitialState = {
@@ -10,7 +10,7 @@ type VotingState = {
 
 const initialState = {
   // value: {
-  isVotingActive: false,
+  isActivePage: null,
 } as VotingState;
 //} as InitialState;
 
@@ -19,7 +19,7 @@ const votingSlice = createSlice({
   initialState,
   reducers: {
     setActivePage(state, action) {
-      state.isVotingActive = action.payload;
+      state.isActivePage = action.payload;
     },
   },
 });
