@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type VotingState = {
-  isActivePage: null | string;
+  isActivePage: string;
 };
 
 // type InitialState = {
@@ -10,7 +10,7 @@ type VotingState = {
 
 const initialState = {
   // value: {
-  isActivePage: null,
+  isActivePage: "/",
 } as VotingState;
 //} as InitialState;
 
