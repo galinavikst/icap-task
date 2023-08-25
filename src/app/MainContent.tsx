@@ -19,7 +19,7 @@ export default function MainContent({
   return (
     <main className="flex relative p-7 h-[100vh] w-full container mx-auto">
       <div className="flex justify-center w-1/2 h-full">
-        <div className="flex flex-col gap-16">
+        <div className="flex fixed flex-col gap-16">
           <Link onClick={() => dispatch(setActivePage("/"))} href="/">
             <Image src="/logo.png" width={105} height={25} alt="logo" />
           </Link>
@@ -36,7 +36,7 @@ export default function MainContent({
         </div>
       </div>
       <div className="w-1/2 flex flex-col gap-2.5">
-        {activeLink !== "/" && <Lookup />}
+        {activeLink !== "/" && activeLink !== "" && <Lookup />}
         {children}
       </div>
     </main>
