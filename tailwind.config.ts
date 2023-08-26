@@ -18,6 +18,7 @@ const config: Config = {
         "neutral-400": "var(--secondary-text-color)",
         "rose-400": "var(--accent-color-rose-400)",
         "rose-opacity": "var( --rose-opacity)",
+        "page-bg-color": "var(--page-bg-color)",
       },
     },
   },

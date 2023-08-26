@@ -22,7 +22,6 @@ import { AppDispatch, useAppSelector } from "@/redux/store";
 export default function VotingBtns() {
   const dispatch = useDispatch<AppDispatch>();
   const [hovered, setHovered] = useState("");
-
   const randomCats = useAppSelector((state) => state.voting.randomCats);
 
   const handleClick = async (

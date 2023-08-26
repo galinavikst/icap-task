@@ -43,7 +43,7 @@ export default function VotingPage() {
     return (
       <li
         key={action.id}
-        className="bg-stone-50 p-6 w-full flex justify-between rounded-2xl"
+        className="bg-page-bg-color p-6 w-full flex justify-between rounded-2xl"
       >
         <div className="flex gap-9 items-center">
           <p className="bg-white rounded-xl p-2">{action.time}</p>

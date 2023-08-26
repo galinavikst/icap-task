@@ -56,7 +56,7 @@ export default function Lookup() {
           `}
         >
           <Image
-            src={activeLink === "favorites" ? disLikeWhite : disLike}
+            src={activeLink === "favorites" ? favoriteWhite : favorite}
             width="30"
             height="30"
             alt="heart favorite"
@@ -70,7 +70,7 @@ export default function Lookup() {
           `}
         >
           <Image
-            src={activeLink === "dislike" ? favoriteWhite : favorite}
+            src={activeLink === "dislike" ? disLikeWhite : disLike}
             width="30"
             height="30"
             alt="smile dislike"

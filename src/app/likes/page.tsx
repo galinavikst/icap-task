@@ -1,9 +1,12 @@
 "use client";
 import GridImgPattern from "@/components/GridImgPattern";
+import NoItems from "@/components/NoItems";
 import { useAppSelector } from "@/redux/store";
 import React from "react";
 
 export default function LikePage() {
+  const likedCats = useAppSelector((state) => state.voting.likedCats);
+
   return (
     <div className="bg-white rounded-2xl p-5">
       <div className="flex gap-2.5">
@@ -14,18 +17,8 @@ export default function LikePage() {
           LIKES
         </button>
       </div>
-      <GridImgPattern />
-      <ul>
-        <li className="bg-stone-50 p-6 w-full flex justify-between rounded-2xl">
-          <div className="flex gap-9 items-center">
-            <p className="bg-white rounded-xl p-2">22:35</p>
-            <p className="text-neutral-400">
-              Image ID: <b className="text-stone-900">fQSunHvl8</b> was removed
-              from Likes
-            </p>
-          </div>
-        </li>
-      </ul>
+      {likedCats[0].length === 0 && <NoItems />}
+      <GridImgPattern catsArr={likedCats} />
     </div>
   );
 }

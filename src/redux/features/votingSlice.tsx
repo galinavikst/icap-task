@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface RandomCatResponse {
   id: string;
@@ -16,21 +16,23 @@ export interface UserActions {
 type VotingState = {
   isActivePage: string;
   likedCats: RandomCatResponse[][];
-  disLikedCats: RandomCatResponse[];
-  favCats: RandomCatResponse[];
+  disLikedCats: RandomCatResponse[][];
+  favCats: RandomCatResponse[][];
   votedCats: RandomCatResponse[];
   randomCats: RandomCatResponse[];
   userActions: UserActions[];
+  userFavActions: UserActions[];
 };
 
 const initialState = {
   isActivePage: "/",
   likedCats: [[]],
-  disLikedCats: [],
-  favCats: [],
+  disLikedCats: [[]],
+  favCats: [[]],
   votedCats: [],
   randomCats: [],
   userActions: [],
+  userFavActions: [],
 } as VotingState;
 
 const votingSlice = createSlice({
@@ -52,10 +54,27 @@ const votingSlice = createSlice({
       }
     },
     addDislickedCat(state, action) {
-      state.disLikedCats.push(action.payload);
+      const lastSet = state.disLikedCats[state.disLikedCats.length - 1];
+      if (lastSet.length < 5) {
+        lastSet.push(action.payload);
+      } else {
+        state.disLikedCats.push([action.payload]);
+      }
     },
     addFavCat(state, action) {
-      state.favCats.push(action.payload);
+      const lastSet = state.favCats[state.favCats.length - 1];
+      if (lastSet.length < 5) {
+        lastSet.push(action.payload);
+      } else {
+        state.favCats.push([action.payload]);
+      }
+    },
+    removeFavCat(state, action) {
+      const catIdToRemove = action.payload;
+      const updatedFavCats = state.favCats.map((catSet) =>
+        catSet.filter((cat) => cat.id !== catIdToRemove)
+      );
+      return { ...state, favCats: updatedFavCats };
     },
     addVotedCat(state, action) {
       state.votedCats.push(action.payload);
@@ -65,6 +84,9 @@ const votingSlice = createSlice({
     },
     addUserAction(state, action) {
       state.userActions.push(action.payload);
+    },
+    addUserFavAction(state, action) {
+      state.userFavActions.push(action.payload);
     },
   },
 });
@@ -77,6 +99,8 @@ export const {
   addUserAction,
   addRandomCat,
   addFavCat,
+  removeFavCat,
+  addUserFavAction,
 } = votingSlice.actions;
 
 export default votingSlice.reducer;
