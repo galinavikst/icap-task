@@ -1,22 +1,9 @@
 "use client";
+import GridImgPattern from "@/components/GridImgPattern";
 import { useAppSelector } from "@/redux/store";
 import React from "react";
 
 export default function LikePage() {
-  const likedCatsArr = useAppSelector((state) => state.voting.likedCats);
-  console.log(likedCatsArr);
-  const cats = likedCatsArr.map((cat) => {
-    console.log(cat.url);
-
-    return (
-      <li
-        key={cat.id}
-        className={`bg-cover bg-center relative rounded-2xl w-full h-[360px] mt-2.5 mb-20 `}
-        style={{ backgroundImage: `url('${cat.url}')` }}
-      ></li>
-    );
-  });
-
   return (
     <div className="bg-white rounded-2xl p-5">
       <div className="flex gap-2.5">
@@ -27,7 +14,7 @@ export default function LikePage() {
           LIKES
         </button>
       </div>
-      <ul>{cats}</ul>
+      <GridImgPattern />
       <ul>
         <li className="bg-stone-50 p-6 w-full flex justify-between rounded-2xl">
           <div className="flex gap-9 items-center">

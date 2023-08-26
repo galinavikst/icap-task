@@ -15,7 +15,7 @@ export interface UserActions {
 
 type VotingState = {
   isActivePage: string;
-  likedCats: RandomCatResponse[];
+  likedCats: RandomCatResponse[][];
   disLikedCats: RandomCatResponse[];
   favCats: RandomCatResponse[];
   votedCats: RandomCatResponse[];
@@ -25,7 +25,7 @@ type VotingState = {
 
 const initialState = {
   isActivePage: "/",
-  likedCats: [],
+  likedCats: [[]],
   disLikedCats: [],
   favCats: [],
   votedCats: [],
@@ -41,7 +41,15 @@ const votingSlice = createSlice({
       state.isActivePage = action.payload;
     },
     addLikedCat(state, action) {
-      state.likedCats.push(action.payload);
+      const lastSet = state.likedCats[state.likedCats.length - 1];
+
+      if (lastSet.length < 5) {
+        // If the last set has less than 5 objects, add the new cat to it
+        lastSet.push(action.payload);
+      } else {
+        // If the last set is full, create a new set and add the new cat to it
+        state.likedCats.push([action.payload]);
+      }
     },
     addDislickedCat(state, action) {
       state.disLikedCats.push(action.payload);
