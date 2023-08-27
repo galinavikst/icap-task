@@ -21,7 +21,7 @@ export default function MainContent({
       <div className="flex justify-center w-1/2 h-full">
         <div className="flex fixed flex-col gap-16">
           <Link onClick={() => dispatch(setActivePage("/"))} href="/">
-            <Image src="/logo.png" width={105} height={25} alt="logo" />
+            <Image src="/Logo.png" width={105} height={25} alt="logo" />
           </Link>
           <div className="flex flex-col gap-2.5">
             <p className="text-4xl font-medium">Hi!👋</p>
