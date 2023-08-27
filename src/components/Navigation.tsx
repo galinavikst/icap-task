@@ -6,6 +6,7 @@ import React from "react";
 import { setActivePage } from "@/redux/features/votingSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "@/redux/store";
+import { setSearchInputValue } from "@/redux/features/searchSlice";
 
 export default function Navigation() {
   const dispatch = useDispatch<AppDispatch>();
@@ -13,6 +14,7 @@ export default function Navigation() {
 
   const handleClick = (linkName: string) => {
     dispatch(setActivePage(linkName));
+    dispatch(setSearchInputValue(""));
   };
 
   return (

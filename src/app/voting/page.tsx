@@ -23,10 +23,7 @@ import Loader from "@/components/Loader";
 
 export default function VotingPage() {
   const dispatch = useDispatch<AppDispatch>();
-  const votedCats = useAppSelector((state) => state.voting.votedCats);
   const likedCats = useAppSelector((state) => state.voting.likedCats);
-  const disLikedCats = useAppSelector((state) => state.voting.disLikedCats);
-  const favCats = useAppSelector((state) => state.voting.favCats);
   const randomCats = useAppSelector((state) => state.voting.randomCats);
   const userActions = useAppSelector((state) => state.voting.userActions);
 

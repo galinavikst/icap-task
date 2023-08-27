@@ -5,6 +5,7 @@ export interface RandomCatResponse {
   url: string;
   width: number;
   height: number;
+  breeds?: [];
 }
 export interface UserActions {
   time: string;

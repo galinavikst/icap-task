@@ -1,13 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type SerchCatResponse = {};
+export type SerchCatResponse = {
+  id: string;
+  breeds?: SerchCatResponse[] | undefined;
+  height: number;
+  url: string;
+  width: number;
+  name?: string;
+};
 
 type SearchState = {
-  searchedCats: SerchCatResponse[];
+  searchedCats: SerchCatResponse[][];
+  searchInputValue: string;
 };
 
 const initialState = {
-  searchedCats: [],
+  searchedCats: [[]],
+  searchInputValue: "",
 } as SearchState;
 
 const searchSlice = createSlice({
@@ -17,9 +26,12 @@ const searchSlice = createSlice({
     setSearchedCats(state, action) {
       state.searchedCats = action.payload;
     },
+    setSearchInputValue(state, action) {
+      state.searchInputValue = action.payload;
+    },
   },
 });
 
-export const { setSearchedCats } = searchSlice.actions;
+export const { setSearchedCats, setSearchInputValue } = searchSlice.actions;
 
 export default searchSlice.reducer;

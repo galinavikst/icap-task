@@ -6,6 +6,9 @@ import React from "react";
 
 export default function SearchPage() {
   const searchedCats = useAppSelector((state) => state.search.searchedCats);
+  const searchInputValue = useAppSelector(
+    (state) => state.search.searchInputValue
+  );
 
   return (
     <div className="bg-white rounded-2xl p-5">
@@ -14,11 +17,14 @@ export default function SearchPage() {
           &#x276E;
         </button>
         <button className="text-white hover:bg-red-100 hover:text-rose-400 bg-rose-400 p-2 text-center w-[145px] rounded-xl tracking-widest">
-          LIKES
+          SEARCH
         </button>
       </div>
       {searchedCats.length === 0 && <NoItems />}
-      {/* <GridImgPattern catsArr={searchedCats} /> */}
+      <p className="text-neutral-400 my-2.5">
+        Search results for: <b className="text-stone-900">{searchInputValue}</b>
+      </p>
+      <GridImgPattern catsArr={searchedCats} />
     </div>
   );
 }

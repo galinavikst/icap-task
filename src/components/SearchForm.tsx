@@ -1,26 +1,45 @@
 "use client";
-import React, { EventHandler, FormEventHandler, useEffect } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { setActivePage } from "@/redux/features/votingSlice";
-import { AppDispatch } from "@/redux/store";
+import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useGetCatByBreedsNameQuery } from "@/redux/features/apiSlice";
-import { setSearchedCats } from "@/redux/features/searchSlice";
+import {
+  setSearchInputValue,
+  setSearchedCats,
+} from "@/redux/features/searchSlice";
+import { useRouter } from "next/navigation";
 
 export default function SearchForm() {
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
+  const searchInputValue = useAppSelector(
+    (state) => state.search.searchInputValue
+  );
 
-  const { data, isLoading } = useGetCatByBreedsNameQuery("beng");
-  console.log(data);
+  const { data } = useGetCatByBreedsNameQuery(searchInputValue);
 
   useEffect(() => {
     if (data) {
-      dispatch(setSearchedCats(data));
+      const resultArray = [];
+
+      for (let i = 0; i < data.length; i += 5) {
+        const batch = data.slice(i, i + 5);
+        resultArray.push(batch);
+      }
+
+      dispatch(setSearchedCats(resultArray));
     }
-  }, []);
+  }, [data, dispatch]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchInputValue(e.target.value));
+  };
 
   const handleInputFocus = () => {
     dispatch(setActivePage("/search"));
+    router.push("/search");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,7 +50,9 @@ export default function SearchForm() {
     <div className="relative grow">
       <form onSubmit={handleSubmit}>
         <input
-          // onFocus={handleInputFocus}
+          onChange={handleChange}
+          value={searchInputValue}
+          onFocus={handleInputFocus}
           className="py-3.5 px-5 rounded-2xl text-xl w-full hover:ring hover:ring-red-100 outline-none focus:ring focus:ring-rose-400"
           type="text"
           placeholder="Search for breeds by name"

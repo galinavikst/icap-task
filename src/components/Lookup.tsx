@@ -12,6 +12,7 @@ import disLikeWhite from "../../public/dislike-white-30.svg";
 import favorite from "../../public/favorite.svg";
 import favoriteWhite from "../../public/fav-white-30.svg";
 import SearchForm from "./SearchForm";
+import { setSearchInputValue } from "@/redux/features/searchSlice";
 
 export default function Lookup() {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,6 +20,7 @@ export default function Lookup() {
 
   const handleClick = (linkName: string) => {
     dispatch(setActivePage(linkName));
+    dispatch(setSearchInputValue(""));
   };
 
   return (

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RandomCatResponse } from "./votingSlice";
+import { SerchCatResponse } from "./searchSlice";
 
 const apiKey =
   "live_pMhx8NbFTc6yNWUvy8InHnvWUzlTRGJQEeKY1YP1NljwqgR488Kl9B0ghXvgVaK0";
@@ -19,8 +20,8 @@ export const catApi = createApi({
       query: () => `search`,
       providesTags: ["RandomCat"], //a tag to identify the query
     }),
-    getCatByBreedsName: builder.query<null, string>({
-      query: (name) => `search?breed_ids=${name}&limit=10&api_key=${apiKey}`,
+    getCatByBreedsName: builder.query<SerchCatResponse[], string>({
+      query: (name) => `search?limit=20&breed_ids=${name}&api_key=${apiKey}`,
     }),
   }),
 });

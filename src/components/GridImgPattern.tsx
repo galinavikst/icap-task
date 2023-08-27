@@ -3,9 +3,10 @@ import { useAppSelector } from "@/redux/store";
 import React, { useState } from "react";
 import FavOverlay from "./FavOverlay";
 import { SerchCatResponse } from "@/redux/features/searchSlice";
+import SearchOverlay from "./SearchOverlay";
 
 interface GridImgPatternProps {
-  catsArr: RandomCatResponse[][];
+  catsArr: RandomCatResponse[][] | SerchCatResponse[][];
 }
 
 export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
@@ -40,6 +41,9 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             {hovered === catSet[0].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[0].id} />
             )}
+            {hovered === catSet[0].id && activePage === "/search" && (
+              <SearchOverlay item={catSet[0]} />
+            )}
           </li>
         )}
         {catSet[1] && (
@@ -47,11 +51,14 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             key={catSet[1].id}
             onMouseEnter={() => handleMouseEnter(catSet[1].id)}
             onMouseLeave={handleMouseLeave}
-            className={`order-2 col-span-1 bg-cover bg-center relative rounded-2xl `}
+            className={`order-2 col-span-1 bg-cover bg-center relative rounded-2xl overflow-hidden`}
             style={{ backgroundImage: `url('${catSet[1].url}')` }}
           >
-            {hovered === catSet[1]?.id && activePage === "favorites" && (
+            {hovered === catSet[1].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[1].id} />
+            )}
+            {hovered === catSet[1].id && activePage === "/search" && (
+              <SearchOverlay item={catSet[1]} />
             )}
           </li>
         )}
@@ -62,11 +69,14 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             onMouseLeave={handleMouseLeave}
             className={`${
               index % 2 === 0 ? "order-3" : "order-1"
-            } row-span-2 bg-cover bg-center relative rounded-2xl  `}
+            } row-span-2 bg-cover bg-center relative rounded-2xl overflow-hidden `}
             style={{ backgroundImage: `url('${catSet[2].url}')` }}
           >
             {hovered === catSet[2].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[2].id} />
+            )}
+            {hovered === catSet[2].id && activePage === "/search" && (
+              <SearchOverlay item={catSet[2]} />
             )}
           </li>
         )}
@@ -75,11 +85,14 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             key={catSet[3].id}
             onMouseEnter={() => handleMouseEnter(catSet[3].id)}
             onMouseLeave={handleMouseLeave}
-            className={`order-4 row-span-2 col-span-2 bg-cover bg-center relative rounded-2xl  `}
+            className={`order-4 row-span-2 col-span-2 bg-cover bg-center relative rounded-2xl overflow-hidden `}
             style={{ backgroundImage: `url('${catSet[3].url}')` }}
           >
             {hovered === catSet[3].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[3].id} />
+            )}
+            {hovered === catSet[3].id && activePage === "/search" && (
+              <SearchOverlay item={catSet[3]} />
             )}
           </li>
         )}
@@ -88,11 +101,14 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             key={catSet[4].id}
             onMouseEnter={() => handleMouseEnter(catSet[4].id)}
             onMouseLeave={handleMouseLeave}
-            className={`order-5 row-span-1 bg-cover bg-center relative rounded-2xl `}
+            className={`order-5 row-span-1 bg-cover bg-center relative rounded-2xl overflow-hidden`}
             style={{ backgroundImage: `url('${catSet[4].url}')` }}
           >
             {hovered === catSet[4].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[4].id} />
+            )}
+            {hovered === catSet[4].id && activePage === "/search" && (
+              <SearchOverlay item={catSet[4]} />
             )}
           </li>
         )}

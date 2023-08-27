@@ -34,7 +34,9 @@ export default function FavOverlay({ itemId }: FavOverlayPrors) {
   };
 
   return (
-    <div className="absolute top-0 bottom-0 w-full flex justify-center items-center">
+    <div
+      className={`absolute top-0 bottom-0 w-full flex items-center justify-center`}
+    >
       <div
         className="absolute top-0 bottom-0 w-full bg-rose-400 "
         style={{ opacity: 0.4 }}
