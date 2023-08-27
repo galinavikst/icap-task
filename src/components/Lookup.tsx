@@ -12,6 +12,7 @@ import disLike from "../../public/dislike.svg";
 import disLikeWhite from "../../public/dislike-white-30.svg";
 import favorite from "../../public/favorite.svg";
 import favoriteWhite from "../../public/fav-white-30.svg";
+import SearchForm from "./SearchForm";
 
 export default function Lookup() {
   const dispatch = useDispatch<AppDispatch>();
@@ -23,16 +24,7 @@ export default function Lookup() {
 
   return (
     <div className="flex gap-2.5">
-      <div className="relative grow">
-        <input
-          className="py-3.5 px-5 rounded-2xl text-xl w-full"
-          type="text"
-          placeholder="Search for breeds by name"
-        />
-        <div className="absolute right-2.5 top-2.5 bg-red-100 p-2 rounded-xl">
-          <Image src="/lup.svg" width="20" height="20" alt="lookup" />
-        </div>
-      </div>
+      <SearchForm />
       <div className="flex gap-2.5 grow-0">
         <Link
           onClick={() => handleClick("likes")}

@@ -2,6 +2,7 @@ import { RandomCatResponse } from "@/redux/features/votingSlice";
 import { useAppSelector } from "@/redux/store";
 import React, { useState } from "react";
 import FavOverlay from "./FavOverlay";
+import { SerchCatResponse } from "@/redux/features/searchSlice";
 
 interface GridImgPatternProps {
   catsArr: RandomCatResponse[][];

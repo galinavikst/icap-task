@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import votingReducer from "./features/votingSlice";
+import searchReducer from "./features/searchSlice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { catApi } from "./features/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query/react";
@@ -7,6 +8,7 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query/react";
 export const store = configureStore({
   reducer: {
     voting: votingReducer,
+    search: searchReducer,
     [catApi.reducerPath]: catApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,

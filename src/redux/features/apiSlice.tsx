@@ -19,8 +19,8 @@ export const catApi = createApi({
       query: () => `search`,
       providesTags: ["RandomCat"], //a tag to identify the query
     }),
-    getPokemonByName: builder.query<null, string>({
-      query: (name) => `pokemon/${name}`,
+    getCatByBreedsName: builder.query<null, string>({
+      query: (name) => `search?breed_ids=${name}&limit=10&api_key=${apiKey}`,
     }),
   }),
 });
@@ -30,5 +30,5 @@ export const catApi = createApi({
 export const {
   useGetCatByIdQuery,
   useGetRandomCatQuery,
-  useGetPokemonByNameQuery,
+  useGetCatByBreedsNameQuery,
 } = catApi;
