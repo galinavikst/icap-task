@@ -1,7 +1,6 @@
 import { catApi } from "@/redux/features/apiSlice";
 import Image from "next/image";
 import {
-  RandomCatResponse,
   addVotedCat,
   addUserAction,
   addLikedCat,
@@ -18,6 +17,7 @@ import favEmpty from "../../public/favorite.svg";
 import dislikeWhite from "../../public/dislike-white-30.svg";
 import dislikeColor from "../../public/dislike-color-30.svg";
 import { AppDispatch, useAppSelector } from "@/redux/store";
+import { SerchCatResponse } from "@/redux/features/searchSlice";
 
 export default function VotingBtns() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,10 +26,10 @@ export default function VotingBtns() {
 
   const handleClick = async (
     clickedIcon: string,
-    action: (userAction: RandomCatResponse) => any,
+    action: (userAction: SerchCatResponse) => any,
     iconSrc: string
   ) => {
-    const lastCat: RandomCatResponse = randomCats[randomCats.length - 1];
+    const lastCat: SerchCatResponse = randomCats[randomCats.length - 1];
 
     if (lastCat) {
       dispatch(addVotedCat(lastCat));
