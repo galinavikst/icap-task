@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export type SerchCatResponse = {
   id: string;
   breeds?: SerchCatResponse[] | undefined;
-  height: number;
+  height?: number;
   url: string;
-  width: number;
+  width?: number;
   name?: string;
   reference_image_id?: string;
 };

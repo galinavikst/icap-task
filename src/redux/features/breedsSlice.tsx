@@ -1,14 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SerchCatResponse } from "./searchSlice";
-
-// export type BreedsCatResponse = {
-//   id: string;
-//   breeds?: BreedsCatResponse[] | undefined;
-//   height?: number;
-//   url: string;
-//   width?: number;
-//   name?: string;
-// };
+import { getArrayForGridPattern } from "@/components/servise";
 
 type BreedState = {
   breedsCats: SerchCatResponse[][];
@@ -32,9 +24,12 @@ const breedsSlice = createSlice({
         state.breedsCats.push([action.payload]);
       }
     },
+    setSortedCats(state, action) {
+      state.breedsCats = action.payload;
+    },
   },
 });
 
-export const { setCatsAllBreeds } = breedsSlice.actions;
+export const { setCatsAllBreeds, setSortedCats } = breedsSlice.actions;
 
 export default breedsSlice.reducer;

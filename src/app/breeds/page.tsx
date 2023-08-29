@@ -1,21 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import arrowUp from "../../../public/sort-20.svg";
-import arrowUpColor from "../../../public/sort-color-20.svg";
-import arrowDown from "../../../public/soft-revert-20.svg";
-import arrowDownColor from "../../../public/sort-revert-color-20.svg";
 import {
   useGetAllBreedsQuery,
   useGetCatByIdQuery,
 } from "@/redux/features/apiSlice";
-import { setCatsAllBreeds } from "@/redux/features/breedsSlice";
+import { setCatsAllBreeds, setSortedCats } from "@/redux/features/breedsSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import NoItems from "@/components/NoItems";
 import GridImgPattern from "@/components/GridImgPattern";
-import { getCatsUrl } from "@/components/servise";
+import { getCatById } from "@/components/servise";
 import { SerchCatResponse } from "@/redux/features/searchSlice";
+import SortBtns from "@/components/SortBtns";
 
 export default function BreedsPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -44,31 +40,30 @@ export default function BreedsPage() {
         );
 
         const fetchPromises = catIds.map(async (catId: string) => {
-          const catUrlToImg = await getCatsUrl(catId);
+          const catById = await getCatById(catId);
+          console.log(catById);
 
-          dispatch(
-            setCatsAllBreeds({
-              id: catId,
-              url: catUrlToImg,
-              name:
-                allBreedsData.find(
-                  (cat: SerchCatResponse) => cat.reference_image_id === catId
-                )?.name || "",
-            })
-          );
+          if (catById) {
+            dispatch(
+              setCatsAllBreeds({
+                id: catId,
+                url: catById.url,
+                name:
+                  allBreedsData.find(
+                    (cat: SerchCatResponse) => cat.reference_image_id === catId
+                  )?.name || "",
+              })
+            );
+          }
         });
 
         await fetchPromises;
-        // const newCats = await Promise.all(fetchPromises);
-        //console.log(newCats);
-
-        // newCats.map((cat) => {
-        //   dispatch(setCatsAllBreeds(cat));
-        // });
       };
 
       fetchCatDetails();
     }
+
+    //dispatch(setSortedCats(stateArr));
   }, [allBreedsData, dispatch]);
 
   const options = optionsArr.map((catName) => {
@@ -108,12 +103,7 @@ export default function BreedsPage() {
           <option value="">Limit 15</option>
           <option value="">Limit 20</option>
         </select>
-        <button className="grow-0 bg-page-bg-color p-2 rounded-xl hover:outline-none hover:ring hover:ring-red-100">
-          <Image src={arrowUp} width="20" height="20" alt="arrow up" />
-        </button>
-        <button className="grow-0 bg-page-bg-color p-2 rounded-xl hover:outline-none hover:ring hover:ring-red-100">
-          <Image src={arrowDown} width="20" height="20" alt="arrow down" />
-        </button>
+        <SortBtns />
       </div>
       {breedsCatsArr.length === 0 && <NoItems />}
 
