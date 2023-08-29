@@ -1,12 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SerchCatResponse } from "./searchSlice";
 
-export interface RandomCatResponse {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-  breeds?: [];
-}
 export interface UserActions {
   time: string;
   id: string;
@@ -16,11 +10,11 @@ export interface UserActions {
 
 type VotingState = {
   isActivePage: string;
-  likedCats: RandomCatResponse[][];
-  disLikedCats: RandomCatResponse[][];
-  favCats: RandomCatResponse[][];
-  votedCats: RandomCatResponse[];
-  randomCats: RandomCatResponse[];
+  likedCats: SerchCatResponse[][];
+  disLikedCats: SerchCatResponse[][];
+  favCats: SerchCatResponse[][];
+  votedCats: SerchCatResponse[];
+  randomCats: SerchCatResponse[];
   userActions: UserActions[];
   userFavActions: UserActions[];
 };

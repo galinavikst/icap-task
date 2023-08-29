@@ -38,8 +38,8 @@ export default function SearchForm() {
   };
 
   const handleInputFocus = () => {
-    dispatch(setActivePage("/search"));
-    router.push("/search");
+    dispatch(setActivePage("search"));
+    router.push("search");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

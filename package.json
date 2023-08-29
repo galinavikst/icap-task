@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-tailwind/react": "^2.1.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",
@@ -23,6 +24,8 @@
     "react-dom": "18.2.0",
     "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.1.2",
+    "react-select": "^5.7.4",
+    "react-select-element": "^2.5.13",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",

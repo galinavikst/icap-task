@@ -9,7 +9,6 @@ import {
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState, useAppSelector } from "@/redux/store";
 import {
-  RandomCatResponse,
   UserActions,
   addDislickedCat,
   addFavCat,

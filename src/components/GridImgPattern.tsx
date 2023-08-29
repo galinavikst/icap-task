@@ -1,4 +1,3 @@
-import { RandomCatResponse } from "@/redux/features/votingSlice";
 import { useAppSelector } from "@/redux/store";
 import React, { useState } from "react";
 import FavOverlay from "./FavOverlay";
@@ -6,7 +5,7 @@ import { SerchCatResponse } from "@/redux/features/searchSlice";
 import SearchOverlay from "./SearchOverlay";
 
 interface GridImgPatternProps {
-  catsArr: RandomCatResponse[][] | SerchCatResponse[][];
+  catsArr: SerchCatResponse[][];
 }
 
 export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
@@ -35,15 +34,16 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             onMouseLeave={handleMouseLeave}
             className={`${
               index % 2 === 0 ? "order-1" : "order-3"
-            } h-36 col-span-1 bg-cover bg-center relative rounded-2xl overflow-hidden `}
+            } h-36 col-span-1 bg-cover bg-center relative rounded-2xl overflow-hidden`}
             style={{ backgroundImage: `url('${catSet[0].url}')` }}
           >
             {hovered === catSet[0].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[0].id} />
             )}
-            {hovered === catSet[0].id && activePage === "/search" && (
-              <SearchOverlay item={catSet[0]} />
-            )}
+            {hovered === catSet[0].id &&
+              (activePage === "search" || activePage === "breeds") && (
+                <SearchOverlay item={catSet[0]} />
+              )}
           </li>
         )}
         {catSet[1] && (
@@ -57,9 +57,10 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             {hovered === catSet[1].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[1].id} />
             )}
-            {hovered === catSet[1].id && activePage === "/search" && (
-              <SearchOverlay item={catSet[1]} />
-            )}
+            {hovered === catSet[1].id &&
+              (activePage === "search" || activePage === "breeds") && (
+                <SearchOverlay item={catSet[1]} />
+              )}
           </li>
         )}
         {catSet[2] && (
@@ -75,9 +76,10 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             {hovered === catSet[2].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[2].id} />
             )}
-            {hovered === catSet[2].id && activePage === "/search" && (
-              <SearchOverlay item={catSet[2]} />
-            )}
+            {hovered === catSet[2].id &&
+              (activePage === "search" || activePage === "breeds") && (
+                <SearchOverlay item={catSet[2]} />
+              )}
           </li>
         )}
         {catSet[3] && (
@@ -91,9 +93,10 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             {hovered === catSet[3].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[3].id} />
             )}
-            {hovered === catSet[3].id && activePage === "/search" && (
-              <SearchOverlay item={catSet[3]} />
-            )}
+            {hovered === catSet[3].id &&
+              (activePage === "search" || activePage === "breeds") && (
+                <SearchOverlay item={catSet[3]} />
+              )}
           </li>
         )}
         {catSet[4] && (
@@ -107,9 +110,10 @@ export default function GridImgPattern({ catsArr }: GridImgPatternProps) {
             {hovered === catSet[4].id && activePage === "favorites" && (
               <FavOverlay itemId={catSet[4].id} />
             )}
-            {hovered === catSet[4].id && activePage === "/search" && (
-              <SearchOverlay item={catSet[4]} />
-            )}
+            {hovered === catSet[4].id &&
+              (activePage === "search" || activePage === "breeds") && (
+                <SearchOverlay item={catSet[4]} />
+              )}
           </li>
         )}
       </ul>

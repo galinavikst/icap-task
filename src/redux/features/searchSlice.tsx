@@ -7,6 +7,7 @@ export type SerchCatResponse = {
   url: string;
   width: number;
   name?: string;
+  reference_image_id?: string;
 };
 
 type SearchState = {

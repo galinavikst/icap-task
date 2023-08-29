@@ -6,6 +6,7 @@ import React from "react";
 
 export default function SearchPage() {
   const searchedCats = useAppSelector((state) => state.search.searchedCats);
+
   const searchInputValue = useAppSelector(
     (state) => state.search.searchInputValue
   );
