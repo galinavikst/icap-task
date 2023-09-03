@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["cdn2.thecatapi.com"],
+    domains: ["i.dummyjson.com"],
   },
   // webpack(config) {
   //   config.module.rules.push({

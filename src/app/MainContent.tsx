@@ -1,44 +1,36 @@
 "use client";
 import React from "react";
-import { AppDispatch, useAppSelector } from "@/redux/store";
-import Lookup from "@/components/Lookup";
-import Navigation from "@/components/Navigation";
 import Link from "next/link";
-import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { setActivePage } from "@/redux/features/votingSlice";
+import SearchIcon from "@mui/icons-material/Search";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { Paper } from "@mui/material";
 
 export default function MainContent({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const dispatch = useDispatch<AppDispatch>();
-  const activeLink = useAppSelector((state) => state.voting.isActivePage);
-
   return (
-    <main className="flex relative p-7 h-[100vh] w-full container mx-auto">
-      <div className="flex justify-center w-1/2 h-full">
-        <div className="flex fixed flex-col gap-16">
-          <Link onClick={() => dispatch(setActivePage("/"))} href="/">
-            <Image src="/Logo.png" width={105} height={25} alt="logo" />
-          </Link>
-          <div className="flex flex-col gap-2.5">
-            <p className="text-4xl font-medium">Hi!👋</p>
-            <h2 className="text-xl font-normal text-neutral-400">
-              Welcome to MacPaw Bootcamp 2023
-            </h2>
-          </div>
-          <div>
-            <p className="text-xl font-medium">Lets start using The Cat API</p>
-            <Navigation />
-          </div>
-        </div>
-      </div>
-      <div className="w-1/2 flex flex-col gap-2.5">
-        {activeLink !== "/" && activeLink !== "" && <Lookup />}
-        {children}
-      </div>
+    <main className="flex relative  h-[100vh] w-full container mx-auto">
+      <nav className="flex flex-col w-[10%] fixed bg-red-100 p-2.5 gap-2.5 justify-center  h-full">
+        <Link className="grow hover:scale-95" href={"search"}>
+          <Paper className=" h-full flex justify-center items-center">
+            <SearchIcon className="" />
+          </Paper>
+        </Link>
+        <Link className="grow hover:scale-95" href={"table"}>
+          <Paper className=" h-full flex justify-center items-center">
+            <ViewListIcon />
+          </Paper>
+        </Link>
+        <Link className="grow hover:scale-95" href={"form"}>
+          <Paper className=" h-full flex justify-center items-center">
+            <AddCircleIcon />
+          </Paper>
+        </Link>
+      </nav>
+      <div className="pl-[15%] w-full my-10 mx-auto">{children}</div>
     </main>
   );
 }

@@ -1,26 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
-import votingReducer from "./features/votingSlice";
+import addBookSlice from "./features/addBookSlice";
 import searchReducer from "./features/searchSlice";
-import breedsReducer from "./features/breedsSlice";
+import tableReducer from "./features/tableSlice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import { catApi } from "./features/apiSlice";
+import { productApi } from "./features/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query/react";
 
 export const store = configureStore({
   reducer: {
-    voting: votingReducer,
+    addBook: addBookSlice,
     search: searchReducer,
-    breeds: breedsReducer,
-    [catApi.reducerPath]: catApi.reducer,
+    table: tableReducer,
+    [productApi.reducerPath]: productApi.reducer,
   },
-  // Adding the api middleware enables caching, invalidation, polling,
-  // and other useful features of `rtk-query`.
+
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(catApi.middleware),
+    getDefaultMiddleware().concat(productApi.middleware),
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
-// see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
 setupListeners(store.dispatch);
 
 export type AppDispatch = typeof store.dispatch;

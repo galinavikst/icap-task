@@ -26,6 +26,10 @@
   }
 }
 
+* {
+  transition: all 150ms ease-in-out;
+}
+
 body {
   color: var(--main-text-color);
   background: var(--page-bg-color);

@@ -9,8 +9,8 @@ import MainContent from "./MainContent";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PetsPaw",
-  description: "project for bootcamp 2023 frontend react-next.js",
+  title: "Products",
+  description: "project frontend react-next.js",
 };
 
 export default function RootLayout({
