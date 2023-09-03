@@ -16,8 +16,8 @@ The app utilizes the [Dummyjson](https://dummyjson.com/) to fetch products and i
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for styling.
 - [Redux Toolkit](https://redux-toolkit.js.org/): A set of tools for efficient Redux development.
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview): A data fetching and caching library for Redux Toolkit.
-- [Formik](https://formik.org/)
-- [Material UI](https://mui.com/)
+- [Formik](https://formik.org/): A Form library for managing form state and validation.
+- [Material UI](https://mui.com/): A popular React UI framework.
 
 ## Installation
 
