@@ -2,6 +2,7 @@
 
 Product1 is a Next.js web application that allows users to browse, search, sorte, and add their favorites.   
 The app utilizes the [Dummyjson](https://dummyjson.com/) to fetch products and information.  
+Not responsive yet.
 
 ## Features
 
@@ -53,4 +54,4 @@ The app utilizes the [Dummyjson](https://dummyjson.com/) to fetch products and i
 
 The app is deployed using [Vercel](https://vercel.com/). You can access the deployed version at:
 
-[https://pets-paw-silk.vercel.app/](https://pets-paw-silk.vercel.app/)
+[https://product1-beige.vercel.app/](https://product1-beige.vercel.app/)
