@@ -44,12 +44,13 @@ export default function Form() {
     onSubmit: async (values, { resetForm }) => {
       try {
         const dateObject = dayjs(values.date);
-        dateObject.toISOString().split("T")[0]; // Format as "YYYY-MM-DD"
+        // Format as "YYYY-MM-DD"
+        const formattedDate = dateObject.toISOString().split("T")[0];
 
         const response = await addProduct({
           title: values.name,
           category: values.author,
-          date: dateObject,
+          date: formattedDate,
           rating: values.rating,
         }).unwrap();
 
