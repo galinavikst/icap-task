@@ -1,15 +1,13 @@
-# PetsPaw App
+# Product1 App
 
-PetsPaw is a Next.js web application that allows users to browse, search, vote on cat photos, and manage their favorites.   
-The app utilizes the [Cats API](https://thecatapi.com/) to fetch cat images and information. Users can explore cat breeds, sort images by breed, and interact with the images through voting and favoriting. 
+Product1 is a Next.js web application that allows users to browse, search, sorte, and add their favorites.   
+The app utilizes the [Dummyjson](https://dummyjson.com/) to fetch products and information.  
 
 ## Features
 
-- Browse and search cat photos from the CatsAPI.
-- Filter photos by cat breed and sort by breed.
-- Vote on cat photos and view the vote count.
-- Add photos to the likes, dislikes, and favorites pages.
-- Manage favorite photos and view them in the favorites page.
+- Browse and search products from the API.
+- Sort products in the table.
+- Add new product.
 
 ## Technology Stack
 
@@ -18,19 +16,21 @@ The app utilizes the [Cats API](https://thecatapi.com/) to fetch cat images and 
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for styling.
 - [Redux Toolkit](https://redux-toolkit.js.org/): A set of tools for efficient Redux development.
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview): A data fetching and caching library for Redux Toolkit.
+- [Formik](https://formik.org/)
+- [Material UI](https://mui.com/)
 
 ## Installation
 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/galinavikst/pets-paw.git
+    git clone https://github.com/galinavikst/product1.git
     ```
 
 2. **Navigate to the project directory:**
 
     ```bash
-    cd pets-paw
+    cd product1
     ```
 
 3. **Install the dependencies:**
