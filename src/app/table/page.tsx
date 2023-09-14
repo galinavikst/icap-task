@@ -31,14 +31,34 @@ export default function BasicTable() {
 
   const sortProducts = (field: string, order: string) => {
     const sortedArr = [...allProductArr].sort((a, b) => {
-      const aValue = a[field as keyof ProductTableRow] as number | string;
-      const bValue = b[field as keyof ProductTableRow] as number | string;
+      const aValue = a[field as keyof ProductTableRow];
+      const bValue = b[field as keyof ProductTableRow];
 
-      if (order === "ab") {
-        return aValue > bValue ? 1 : bValue > aValue ? -1 : 0;
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        const aValueLowerCase = aValue.toLowerCase();
+        const bValueLowerCase = bValue.toLowerCase();
+
+        if (order === "ab") {
+          return aValueLowerCase > bValueLowerCase
+            ? 1
+            : bValueLowerCase > aValueLowerCase
+            ? -1
+            : 0;
+        } else {
+          // For descending 'ba' order
+          return aValueLowerCase > bValueLowerCase
+            ? -1
+            : bValueLowerCase > aValueLowerCase
+            ? 1
+            : 0;
+        }
       } else {
-        // For descending 'ba' order
-        return aValue > bValue ? -1 : bValue > aValue ? 1 : 0;
+        if (order === "ab") {
+          return aValue > bValue ? 1 : bValue > aValue ? -1 : 0;
+        } else {
+          // For descending 'ba' order
+          return aValue > bValue ? -1 : bValue > aValue ? 1 : 0;
+        }
       }
     });
     dispatch(setAllProducts(sortedArr));
@@ -53,63 +73,73 @@ export default function BasicTable() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell className="flex items-center ">
-                ID
-                <NorthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("id", "ba")}
-                />
-                <SouthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("id", "ab")}
-                />
+              <TableCell>
+                <div className="flex">
+                  ID
+                  <NorthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("id", "ba")}
+                  />
+                  <SouthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("id", "ab")}
+                  />
+                </div>
               </TableCell>
               <TableCell>
-                Name
-                <NorthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("title", "ba")}
-                />
-                <SouthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("title", "ab")}
-                />
+                <div className="flex">
+                  Name
+                  <NorthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("title", "ba")}
+                  />
+                  <SouthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("title", "ab")}
+                  />
+                </div>
               </TableCell>
               <TableCell>Description</TableCell>
-              <TableCell className="flex items-center ">
-                Price
-                <NorthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("price", "ba")}
-                />
-                <SouthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("price", "ab")}
-                />
+              <TableCell>
+                <div className="flex">
+                  Price
+                  <NorthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("price", "ba")}
+                  />
+                  <SouthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("price", "ab")}
+                  />
+                </div>
               </TableCell>
               <TableCell>Photo</TableCell>
-              <TableCell className="flex items-center ">
-                Rating
-                <NorthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("rating", "ba")}
-                />
-                <SouthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("rating", "ab")}
-                />
+              <TableCell>
+                <div className="flex">
+                  Rating
+                  <NorthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("rating", "ba")}
+                  />
+                  <SouthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("rating", "ab")}
+                  />
+                </div>
               </TableCell>
               <TableCell>Stock</TableCell>
-              <TableCell className="flex items-center ">
-                Category
-                <NorthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("category", "ba")}
-                />
-                <SouthIcon
-                  className="w-5 hover:scale-110 hover:cursor-pointer"
-                  onClick={() => sortProducts("category", "ab")}
-                />
+              <TableCell>
+                <div className="flex">
+                  Category
+                  <NorthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("category", "ba")}
+                  />
+                  <SouthIcon
+                    className="w-5 hover:scale-110 hover:cursor-pointer"
+                    onClick={() => sortProducts("category", "ab")}
+                  />
+                </div>
               </TableCell>
             </TableRow>
           </TableHead>

@@ -33,15 +33,14 @@ export default function FormPage() {
           >
             <Card sx={{ minWidth: 275 }}>
               <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
+                <Typography color="text.secondary" gutterBottom>
                   {book.title}
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                <Typography color="text.secondary" gutterBottom>
                   {book.category}
+                </Typography>
+                <Typography color="text.secondary" gutterBottom>
+                  {book.price}
                 </Typography>
               </CardContent>
               <CardActions>

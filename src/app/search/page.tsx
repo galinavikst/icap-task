@@ -48,9 +48,6 @@ export default function SearchPage() {
           minWidth: 275,
         }}
       >
-        <IconButton sx={{ p: "10px" }} aria-label="menu">
-          <MenuIcon />
-        </IconButton>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           placeholder="Name or Category"
@@ -63,7 +60,9 @@ export default function SearchPage() {
       </Paper>
       {(isLoading && <Loader />) || (inputValue === null && <NoItems />)}
       {data && (
-        <List className="columns-1 md:columns-2 lg:columns-3">{cards}</List>
+        <List className="w-full columns-1 md:columns-2 lg:columns-3">
+          {cards}
+        </List>
       )}
     </Box>
   );

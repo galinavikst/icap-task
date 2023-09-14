@@ -46,13 +46,15 @@ export default function Form() {
         const dateObject = dayjs(values.date);
         // Format as "YYYY-MM-DD"
         const formattedDate = dateObject.toISOString().split("T")[0];
+        console.log(formattedDate);
 
         const response = await addProduct({
           title: values.name,
           category: values.author,
-          date: formattedDate,
+          price: formattedDate,
           rating: values.rating,
         }).unwrap();
+        console.log(response);
 
         dispatch(setAddedBook(response));
         resetForm();

@@ -4,7 +4,7 @@ export interface AddedBook {
   id: number;
   title: string;
   category: string;
-  date: string;
+  price: string;
   rating: number;
 }
 
