@@ -136,11 +136,11 @@ export default function BasicTable() {
   return isLoading ? (
     <Loader />
   ) : (
-    <Container className="py-5">
+    <Container className="py-0 px-0">
       <AppTittle />
       <form onSubmit={handleSubmit}>
         <TableContainer ref={tableRef} component={Paper} className="my-5">
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ minWidth: 630 }} aria-label="simple table">
             <TableHeadSorting />
             <TableBody>
               {allProductArr.map((row: ITableRow) => (
@@ -191,7 +191,7 @@ export default function BasicTable() {
                       row.email
                     )}
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell>
                     {editMode === row.id ? (
                       <TextField
                         onChange={handleInputChange}

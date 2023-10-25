@@ -22,7 +22,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <ReduxProvider>
           <Header />
-          <main className="flex justify-center p-10">{children}</main>
+          <main className="flex justify-center px-0 md:px-10 py-10">
+            {children}
+          </main>
         </ReduxProvider>
       </body>
     </html>
