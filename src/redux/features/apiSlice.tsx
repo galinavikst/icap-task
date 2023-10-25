@@ -1,34 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ITableRow } from "./tableSlice";
 
-// type BodyData = {
-//   username: string;
-//   password: string;
-// };
-
-// type DataMessaga = {
-//   message: string;
-// };
-
-// type ErrorMessaga = {
-//   error: string;
-// };
-
-// interface LoginResponse {
-//   data: Error | Data;
-// }
-
-// interface Error {
-//   data: ErrorMessaga;
-//   status: number;
-//   //error: FetchBaseQueryError | SerializedError;
-// }
-
-// interface Data {
-//   data: DataMessaga;
-//   status?: number;
-// }
-
 export interface IResponse {
   count: number;
   next: string;

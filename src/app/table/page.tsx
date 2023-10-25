@@ -22,6 +22,7 @@ import { convertDateFormat } from "../servise";
 
 export default function BasicTable() {
   const dispatch = useDispatch<AppDispatch>();
+  const tableRef = React.useRef<HTMLDivElement | null>(null);
   const [editMode, setEditMode] = React.useState<number | null>(null);
   const [errorData, setErrorData] = React.useState({
     errorText: "",
@@ -36,7 +37,6 @@ export default function BasicTable() {
     phone_number: "",
     address: "",
   });
-
   const [updatedData, setUpdatedData] = React.useState<ITableRow | null>(null);
 
   const { id, name, email, birthday_date, phone_number, address } = rowData;
@@ -47,15 +47,33 @@ export default function BasicTable() {
   const { data, isLoading, refetch } = useGetAllRowsQuery(limit);
   const [updateRow] = useEditRowMutation();
 
+  // fetch and set data
   React.useEffect(() => {
     if (data) {
       dispatch(setAllRows(data.results));
     }
   }, [data, dispatch]);
 
-  const handleEdit = (row: ITableRow) => {
-    setEditMode(row.id);
+  // handle click outside table
+  const handleClickOutside = (event: MouseEvent) => {
+    if (tableRef.current && !tableRef.current.contains(event.target as Node)) {
+      setEditMode(null);
+    }
+  };
+  React.useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
+  // handle table editing
+  const handleEdit = (row: ITableRow) => {
+    setErrorData({
+      errorText: "",
+      errorName: "",
+    });
+    setEditMode(row.id);
     setRowData({
       id: row.id,
       name: row.name,
@@ -68,14 +86,14 @@ export default function BasicTable() {
     setUpdatedData(rowData);
   };
 
+  // handle submit and validation
   const handleSubmit = async (e: React.FormEvent) => {
     // e.stopPropagation();
     console.log(updatedData);
     e.preventDefault();
 
     try {
-      const response = await updateRow(updatedData).unwrap();
-
+      await updateRow(updatedData).unwrap();
       refetch();
       setEditMode(null);
     } catch (error: any) {
@@ -90,10 +108,11 @@ export default function BasicTable() {
       }
     }
   };
+
+  // handle input change in editMode
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    // Check if the input is a date and if it's in the past
     if (name === "birthday_date") {
       const inputDate = new Date(value);
       const currentDate = new Date();
@@ -120,7 +139,7 @@ export default function BasicTable() {
     <Container className="py-5">
       <AppTittle />
       <form onSubmit={handleSubmit}>
-        <TableContainer component={Paper} className="my-5">
+        <TableContainer ref={tableRef} component={Paper} className="my-5">
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHeadSorting />
             <TableBody>
