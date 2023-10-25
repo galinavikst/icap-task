@@ -11,6 +11,7 @@
 ## Technology Stack
 
 - [React](https://reactjs.org/): A JavaScript library for building user interfaces.
+- [Typescript](https://www.typescriptlang.org/): A modern programming language.
 - [Next.js](https://nextjs.org/): A React framework for building server-rendered applications.
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for styling.
 - [Redux Toolkit](https://redux-toolkit.js.org/): A set of tools for efficient Redux development.
