@@ -1,14 +1,12 @@
-# Product1 App
-
-Product1 is a Next.js web application that allows users to browse, search, sorte, and add their favorites.   
-The app utilizes the [Dummyjson](https://dummyjson.com/) to fetch products and information.  
-Not responsive yet.
+# icap-test
 
 ## Features
 
-- Browse and search products from the API.
-- Sort products in the table.
-- Add new product.
+- Browse table from the API.
+- Sort data in the table.
+- Adit table.
+- Pagination.
+- User authentication.
 
 ## Technology Stack
 
@@ -17,7 +15,6 @@ Not responsive yet.
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for styling.
 - [Redux Toolkit](https://redux-toolkit.js.org/): A set of tools for efficient Redux development.
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview): A data fetching and caching library for Redux Toolkit.
-- [Formik](https://formik.org/): A Form library for managing form state and validation.
 - [Material UI](https://mui.com/): A popular React UI framework.
 
 ## Installation
@@ -25,13 +22,13 @@ Not responsive yet.
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/galinavikst/product1.git
+    git clone https://github.com/galinavikst/icap-task.git
     ```
 
 2. **Navigate to the project directory:**
 
     ```bash
-    cd product1
+    cd icap-task
     ```
 
 3. **Install the dependencies:**
@@ -54,4 +51,4 @@ Not responsive yet.
 
 The app is deployed using [Vercel](https://vercel.com/). You can access the deployed version at:
 
-[https://product1-beige.vercel.app/](https://product1-beige.vercel.app/)
+[https://icap-task-8hj5.vercel.app/](https://icap-task-8hj5.vercel.app/)
