@@ -70,17 +70,14 @@ export default function BasicTable() {
   const handleSubmit = async (e: React.FormEvent) => {
     // e.stopPropagation();
     console.log(updatedData);
-
     e.preventDefault();
-    const response = await updateRow(updatedData);
-    console.log(response);
 
-    const { error, data } = await updateRow(updatedData);
+    try {
+      const response = await updateRow(updatedData).unwrap();
 
-    if (data) {
       refetch();
       setEditMode(null);
-    } else {
+    } catch (error: any) {
       for (const field in error.data) {
         if (Array.isArray(error.data[field]) && error.data[field].length > 0) {
           setErrorData({
@@ -91,8 +88,6 @@ export default function BasicTable() {
         }
       }
     }
-
-    console.log(errorData);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

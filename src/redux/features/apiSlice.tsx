@@ -1,20 +1,33 @@
-import {
-  FetchBaseQueryError,
-  createApi,
-  fetchBaseQuery,
-} from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ITableRow } from "./tableSlice";
-import { SerializedError } from "@reduxjs/toolkit";
 
-interface LoginResponse {
-  data: Error | Data;
-}
-interface Error {
-  error: FetchBaseQueryError | SerializedError;
-}
-interface Data {
-  data: any;
-}
+// type BodyData = {
+//   username: string;
+//   password: string;
+// };
+
+// type DataMessaga = {
+//   message: string;
+// };
+
+// type ErrorMessaga = {
+//   error: string;
+// };
+
+// interface LoginResponse {
+//   data: Error | Data;
+// }
+
+// interface Error {
+//   data: ErrorMessaga;
+//   status: number;
+//   //error: FetchBaseQueryError | SerializedError;
+// }
+
+// interface Data {
+//   data: DataMessaga;
+//   status?: number;
+// }
 
 export interface IResponse {
   count: number;
@@ -42,7 +55,7 @@ export const icapApi = createApi({
       }),
     }),
 
-    login: builder.mutation<LoginResponse, any>({
+    login: builder.mutation<any, any>({
       query: (bodyData) => ({
         url: "/login/",
         method: "POST",

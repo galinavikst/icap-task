@@ -22,25 +22,18 @@ export default function Home() {
       password: password,
     };
     try {
-      const response = await login(bodyData);
-      console.log(response);
+      const response = await login(bodyData).unwrap();
 
-      const { data, error } = await login(JSON.stringify(bodyData));
-      console.log(data, error);
+      setText(response.message);
+      setIsLoginSuccess(true);
+      setTimeout(() => {
+        setIsLoginSuccess(false);
+      }, 2500);
 
-      if (error) {
-        setText(error.data.error);
-        setError(true);
-      } else {
-        setText(data.message);
-        setIsLoginSuccess(true);
-        setTimeout(() => {
-          setIsLoginSuccess(false);
-        }, 2500);
-        router.push("/table");
-      }
+      router.push("/table");
     } catch (error: any) {
-      console.log(error);
+      setText(error.data.error);
+      setError(true);
     }
   };
 
