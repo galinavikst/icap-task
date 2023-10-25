@@ -79,8 +79,8 @@ export const icapApi = createApi({
       }),
     }),
 
-    getAllRows: builder.query<IResponse, void>({
-      query: () => `/table/`,
+    getAllRows: builder.query<IResponse, number>({
+      query: (limit) => `/table/?limit=${limit}&offset=${limit}`,
     }),
   }),
 });

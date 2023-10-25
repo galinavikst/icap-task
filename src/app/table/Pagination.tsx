@@ -1,9 +1,9 @@
 "use client";
-import { baseUrl, fetchData } from "@/redux/features/apiSlice";
-import { ITableRow, setAllRows } from "@/redux/features/tableSlice";
-import { AppDispatch } from "@/redux/store";
-import { TablePagination } from "@mui/material";
 import React from "react";
+import { baseUrl, fetchData } from "@/redux/features/apiSlice";
+import { ITableRow, setAllRows, setLimit } from "@/redux/features/tableSlice";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { TablePagination } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 type Props = {
@@ -20,9 +20,10 @@ type PaginationProps = {
 export default function Pagination({ data }: PaginationProps) {
   const dispatch = useDispatch<AppDispatch>();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [prevUrl, setPrevUrl] = React.useState<string | null>(null);
   const [nextUrl, setNextUrl] = React.useState<string | null>(null);
+
+  const limit = useAppSelector((state) => state.table.limit);
 
   React.useEffect(() => {
     if (data) {
@@ -31,7 +32,6 @@ export default function Pagination({ data }: PaginationProps) {
   }, [data]);
 
   const handleChangePage = async (event: unknown, newPage: number) => {
-    console.log(newPage, rowsPerPage);
     setPage(newPage);
   };
 
@@ -59,7 +59,7 @@ export default function Pagination({ data }: PaginationProps) {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const selectedValue = event.target.value;
-    setRowsPerPage(parseInt(selectedValue, 10));
+    dispatch(setLimit(parseInt(selectedValue, 10)));
     const url = `${baseUrl}/table/?limit=${selectedValue}&offset=${selectedValue}`;
 
     const data = await fetchData(url);
@@ -75,7 +75,7 @@ export default function Pagination({ data }: PaginationProps) {
       rowsPerPageOptions={[5, 10, 25]}
       component="div"
       count={data.count}
-      rowsPerPage={rowsPerPage}
+      rowsPerPage={limit}
       page={page}
       onPageChange={handleChangePage}
       backIconButtonProps={{
@@ -84,7 +84,7 @@ export default function Pagination({ data }: PaginationProps) {
       }}
       nextIconButtonProps={{
         onClick: () => handlePagination("next"),
-        disabled: page >= Math.ceil(data.count / rowsPerPage) - 1,
+        disabled: page >= Math.ceil(data.count / limit) - 1,
       }}
       onRowsPerPageChange={handleChangeRowsPerPage}
     />

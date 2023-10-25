@@ -42,8 +42,9 @@ export default function BasicTable() {
   const { id, name, email, birthday_date, phone_number, address } = rowData;
 
   const allProductArr = useAppSelector((state) => state.table.allRows);
+  const limit = useAppSelector((state) => state.table.limit);
 
-  const { data, isLoading, refetch } = useGetAllRowsQuery();
+  const { data, isLoading, refetch } = useGetAllRowsQuery(limit);
   const [updateRow] = useEditRowMutation();
 
   React.useEffect(() => {

@@ -11,10 +11,12 @@ export interface ITableRow {
 
 type TableState = {
   allRows: ITableRow[];
+  limit: number;
 };
 
 const initialState = {
   allRows: [],
+  limit: 10,
 } as TableState;
 
 const tableSlice = createSlice({
@@ -24,9 +26,12 @@ const tableSlice = createSlice({
     setAllRows(state, action) {
       state.allRows = action.payload;
     },
+    setLimit(state, action) {
+      state.limit = action.payload;
+    },
   },
 });
 
-export const { setAllRows } = tableSlice.actions;
+export const { setAllRows, setLimit } = tableSlice.actions;
 
 export default tableSlice.reducer;
