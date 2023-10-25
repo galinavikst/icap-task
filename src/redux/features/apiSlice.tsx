@@ -1,31 +1,86 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { AddedBook } from "./addBookSlice";
+import {
+  FetchBaseQueryError,
+  createApi,
+  fetchBaseQuery,
+} from "@reduxjs/toolkit/query/react";
+import { ITableRow } from "./tableSlice";
+import { SerializedError } from "@reduxjs/toolkit";
 
-export const productApi = createApi({
-  reducerPath: "catApi",
+interface LoginResponse {
+  data: Error | Data;
+}
+interface Error {
+  error: FetchBaseQueryError | SerializedError;
+}
+interface Data {
+  data: any;
+}
+
+export interface IResponse {
+  count: number;
+  next: string;
+  previous: string;
+  results: ITableRow[];
+}
+
+export const baseUrl = "https://technical-task-api.icapgroupgmbh.com/api";
+export const icapApi = createApi({
+  reducerPath: "icapApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dummyjson.com",
+    baseUrl,
   }),
   endpoints: (builder) => ({
-    getProductByQuery: builder.query<any, string>({
-      query: (query) => `/products/search?q=${query}`,
-    }),
-    addProduct: builder.mutation<AddedBook, Omit<AddedBook, "id">>({
+    addRow: builder.mutation<ITableRow, Omit<ITableRow, "id">>({
       query: (body) => ({
-        url: `/products/add`,
+        url: `/table/`,
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
         body,
       }),
     }),
 
-    getAllProducts: builder.query<any, void>({
-      query: () => `/products`,
+    login: builder.mutation<LoginResponse, any>({
+      query: (bodyData) => ({
+        url: "/login/",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        body: bodyData,
+      }),
+    }),
+
+    editRow: builder.mutation({
+      query: (row) => ({
+        url: `/table/${row.id}/`,
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        body: row,
+      }),
+    }),
+
+    getAllRows: builder.query<IResponse, void>({
+      query: () => `/table/`,
     }),
   }),
 });
 
+export const fetchData = async (url: string) => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
+
 export const {
-  useGetProductByQueryQuery,
-  useAddProductMutation,
-  useGetAllProductsQuery,
-} = productApi;
+  useAddRowMutation,
+  useGetAllRowsQuery,
+  useLoginMutation,
+  useEditRowMutation,
+} = icapApi;

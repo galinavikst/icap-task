@@ -1,36 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface ProductTableRow {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  images: string[];
-  rating: number;
-  stock: number;
-  category: string;
+export interface ITableRow {
+  id: number | null;
+  name: string;
+  address: string;
+  birthday_date: string;
+  email: string;
+  phone_number: string;
 }
 
 type TableState = {
-  allProducts: ProductTableRow[];
-  searchInputValue: string;
+  allRows: ITableRow[];
 };
 
 const initialState = {
-  allProducts: [],
-  searchInputValue: "",
+  allRows: [],
 } as TableState;
 
 const tableSlice = createSlice({
   name: "table",
   initialState,
   reducers: {
-    setAllProducts(state, action) {
-      state.allProducts = action.payload;
+    setAllRows(state, action) {
+      state.allRows = action.payload;
     },
   },
 });
 
-export const { setAllProducts } = tableSlice.actions;
+export const { setAllRows } = tableSlice.actions;
 
 export default tableSlice.reducer;
